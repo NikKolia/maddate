@@ -1,0 +1,24 @@
+[08-Jan-2020 11:17:10 Europe/Kiev] PHP Fatal error:  Uncaught Error: Call to undefined function __() in /home/romanm12/public_html/themes/default/index.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/romanm12/public_html/themes/default/index.php on line 6
+[08-Jan-2020 20:02:47 Europe/Kiev] PHP Fatal error:  Uncaught Error: Call to undefined function __() in /home/romanm12/public_html/themes/default/index.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/romanm12/public_html/themes/default/index.php on line 6
+[09-Jan-2020 00:31:36 Europe/Kiev] PHP Fatal error:  Uncaught Error: Call to undefined function __() in /home/romanm12/public_html/themes/default/index.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/romanm12/public_html/themes/default/index.php on line 6
+[09-Jan-2020 01:46:00 Europe/Kiev] PHP Fatal error:  Uncaught Error: Call to undefined function __() in /home/romanm12/public_html/themes/default/index.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/romanm12/public_html/themes/default/index.php on line 6
+[09-Jan-2020 03:36:24 Europe/Kiev] PHP Fatal error:  Uncaught Error: Call to undefined function __() in /home/romanm12/public_html/themes/default/index.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/romanm12/public_html/themes/default/index.php on line 6
+[10-Jan-2020 11:13:53 Europe/Kiev] PHP Fatal error:  Uncaught Error: Call to undefined function __() in /home/romanm12/public_html/themes/default/index.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/romanm12/public_html/themes/default/index.php on line 6

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/lib/vendor/illuminate/events" />
+      <path value="$PROJECT_DIR$/lib/vendor/illuminate/support" />
+      <path value="$PROJECT_DIR$/lib/vendor/twilio/sdk" />
+      <path value="$PROJECT_DIR$/lib/vendor/mtdowling/jmespath.php" />
+      <path value="$PROJECT_DIR$/lib/vendor/illuminate/filesystem" />
+      <path value="$PROJECT_DIR$/lib/vendor/crodas/haanga" />
+      <path value="$PROJECT_DIR$/lib/vendor/illuminate/pagination" />
+      <path value="$PROJECT_DIR$/lib/vendor/illuminate/contracts" />
+      <path value="$PROJECT_DIR$/lib/vendor/illuminate/database" />
+      <path value="$PROJECT_DIR$/lib/vendor/illuminate/cache" />
+      <path value="$PROJECT_DIR$/lib/vendor/phpmailer/phpmailer" />
+      <path value="$PROJECT_DIR$/lib/vendor/illuminate/container" />
+      <path value="$PROJECT_DIR$/lib/vendor/fake-users/vendor" />
+      <path value="$PROJECT_DIR$/lib/vendor/hybridauth/hybridauth" />
+      <path value="$PROJECT_DIR$/lib/vendor/spaces/aws" />
+      <path value="$PROJECT_DIR$/lib/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/lib/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/lib/vendor/paypal/rest-api-sdk-php" />
+      <path value="$PROJECT_DIR$/lib/vendor/s3/Psr" />
+      <path value="$PROJECT_DIR$/lib/vendor/ftp/vendor" />
+      <path value="$PROJECT_DIR$/lib/vendor/s3/Aws" />
+      <path value="$PROJECT_DIR$/lib/vendor/s3/GuzzleHttp" />
+      <path value="$PROJECT_DIR$/lib/vendor/s3/JmesPath" />
+      <path value="$PROJECT_DIR$/lib/vendor/stripe/stripe-php" />
+      <path value="$PROJECT_DIR$/lib/vendor/facebook/graph-sdk" />
+      <path value="$PROJECT_DIR$/lib/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/lib/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/lib/vendor/composer" />
+      <path value="$PROJECT_DIR$/lib/vendor/doctrine/Common" />
+      <path value="$PROJECT_DIR$/lib/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/lib/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/lib/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/lib/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/lib/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/lib/vendor/aws/aws-sdk-php" />
+      <path value="$PROJECT_DIR$/lib/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/lib/vendor/psr/http-message" />
+    </include_path>
+  </component>
+</project>
