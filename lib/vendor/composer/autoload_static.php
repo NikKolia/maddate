@@ -198,7 +198,7 @@ class ComposerStaticInit061090d423fb0e3ef598861a86f47d24
         'Haanga_Extension_Filter_IsArray' => __DIR__ . '/..' . '/crodas/haanga/lib/Haanga/Extension/Filter/Isarray.php',
         'Haanga_Extension_Filter_Join' => __DIR__ . '/..' . '/crodas/haanga/lib/Haanga/Extension/Filter/Join.php',
         'Haanga_Extension_Filter_Json' => __DIR__ . '/..' . '/crodas/haanga/lib/Haanga/Extension/Filter/Json.php',
-        'Haanga_Extension_Filter_Length' => __DIR__ . '/..' . '/crodas/haanga/lib/Haanga/Extension/Filter/Length.php',
+        'Haanga_Extension_Filter_Length' => __DIR__ . '/..' . '/crodas/haanga/lib/Haanga/Extension/Filter/Strlen.php',
         'Haanga_Extension_Filter_Linebreaksbr' => __DIR__ . '/..' . '/crodas/haanga/lib/Haanga/Extension/Filter/Linebreaksbr.php',
         'Haanga_Extension_Filter_Lower' => __DIR__ . '/..' . '/crodas/haanga/lib/Haanga/Extension/Filter/Lower.php',
         'Haanga_Extension_Filter_Null' => __DIR__ . '/..' . '/crodas/haanga/lib/Haanga/Extension/Filter/Null.php',

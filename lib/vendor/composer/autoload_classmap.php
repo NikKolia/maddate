@@ -32,7 +32,7 @@ return array(
     'Haanga_Extension_Filter_IsArray' => $vendorDir . '/crodas/haanga/lib/Haanga/Extension/Filter/Isarray.php',
     'Haanga_Extension_Filter_Join' => $vendorDir . '/crodas/haanga/lib/Haanga/Extension/Filter/Join.php',
     'Haanga_Extension_Filter_Json' => $vendorDir . '/crodas/haanga/lib/Haanga/Extension/Filter/Json.php',
-    'Haanga_Extension_Filter_Length' => $vendorDir . '/crodas/haanga/lib/Haanga/Extension/Filter/Length.php',
+    'Haanga_Extension_Filter_Length' => $vendorDir . '/crodas/haanga/lib/Haanga/Extension/Filter/Strlen.php',
     'Haanga_Extension_Filter_Linebreaksbr' => $vendorDir . '/crodas/haanga/lib/Haanga/Extension/Filter/Linebreaksbr.php',
     'Haanga_Extension_Filter_Lower' => $vendorDir . '/crodas/haanga/lib/Haanga/Extension/Filter/Lower.php',
     'Haanga_Extension_Filter_Null' => $vendorDir . '/crodas/haanga/lib/Haanga/Extension/Filter/Null.php',
