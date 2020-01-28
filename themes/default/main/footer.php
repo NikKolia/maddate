@@ -86,10 +86,24 @@
     <?php } ?>
 
     <script>
+        function likedUser(userid) {
+            $.ajax({
+                type: 'POST',
+                url: 'trig.php',
+                data: {
+                    userid: userid,
+                    id: "<?php echo $profile->id;?>",
+                    username: "<?php echo $profile->username;?>"
+                },
+            });
+        }
+    </script>
+
+    <script>
         var botmanWidget = {
             frameEndpoint: '/chat.html',
-            introMessage: 'Hello, I am a Chatbot',
-            chatServer : 'chat.php',
+            introMessage: 'Hello <?php echo $profile->username;?>, I am a Chatbot',
+            chatServer : 'trig.php',
             title: 'My Chatbot',
             mainColor: '#456765',
             bubbleBackground: '#ff76f4',
@@ -97,7 +111,6 @@
             bubbleAvatarUrl: '',
         };
     </script>
-    <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
 
 </body>
 </html>

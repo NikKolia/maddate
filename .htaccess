@@ -1,4 +1,4 @@
-Options +FollowSymLinks -Indexes
+# Options +FollowSymLinks -Indexes
 # Turn on URL rewriting
 RewriteEngine On
 # Installation directory

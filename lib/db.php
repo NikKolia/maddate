@@ -1251,7 +1251,11 @@ class MysqliDb {
 	}
 }
 
-$conn = mysqli_connect($servername, $dbusername, $dbpassword, $dbname);
+$conn = mysqli_connect('localhost', 'root', '1111', 'romanm12_dating');
+if (mysqli_connect_errno()) {
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    exit();
+}
 $conn->set_charset('utf8mb4');
 $conn->query("SET collation_connection = utf8mb4_unicode_ci");
 $db = new MysqliDb($conn);
