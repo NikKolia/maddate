@@ -101,6 +101,7 @@
 
     <script>
         var botmanWidget = {
+/*            frameEndpoint: '/themes/default/main/chat-message-form.php',*/
             frameEndpoint: '/chat.html',
             introMessage: 'Hello <?php echo $profile->username;?>, I am a Chatbot',
             chatServer : 'trig.php',
@@ -111,6 +112,9 @@
             bubbleAvatarUrl: '',
         };
     </script>
+
+    <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+<!--    <script id="botmanWidget" src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/chat.js'></script>-->
 
 </body>
 </html>

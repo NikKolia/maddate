@@ -19,7 +19,7 @@ if (isset($_POST['userid']) && !empty($_POST['userid'])) {
     $userid = $_POST['userid'];
 }
 
-$trigger = $db->where('id', (int)$userid = $_POST['userid'])->getOne('users', array(
+$trigger = $db->where('id', (int) $userid)->getOne('users', array(
     'id',
     'first_name',
     'last_name',
@@ -131,10 +131,6 @@ if ($isnew === true) {
     }
 }
 
-
-
-
-
 $config = [
     // Your driver-specific configuration
     // "telegram" => [
@@ -148,17 +144,7 @@ $botman = BotManFactory::create($config);
 
 // Give the bot something to listen for.
 $botman->hears('Hello|Hi', function (BotMan $bot) {
-    $bot->reply('Hello too');
-});
-
-$botman->hears('{userid}|{username}', function (BotMan $bot, $username) {
-    if (isset($_POST['id']) && !empty($_POST['id'])) {
-        $id = $_POST['id'];
-    }
-    if (isset($_POST['userid']) && !empty($_POST['userid'])) {
-        $userid = $_POST['userid'];
-    }
-    $reply = "Hello! " . $username . "! (id=" . $id . ") You liked me:)) My userid: " . $userid . "!";
+    $reply = "Hello, my friend!! Let's conversate!";
     $bot->reply($reply);
 });
 
@@ -170,7 +156,16 @@ $botman->fallback(function ($bot) {
 $botman->listen();
 
 
-
+/*$botman->hears('{userid}|{username}', function (BotMan $bot, $username) {
+    if (isset($_POST['id']) && !empty($_POST['id'])) {
+        $id = $_POST['id'];
+    }
+    if (isset($_POST['userid']) && !empty($_POST['userid'])) {
+        $userid = $_POST['userid'];
+    }
+    $reply = "Hello! " . $username . "! (id=" . $id . ") You liked me:)) My userid: " . $userid . "!";
+    $bot->reply($reply);
+});*/
 
 /*echo "\nIT Works \n";*/
 
@@ -211,3 +206,21 @@ echo "\n username: $username";*/
 /* $botman->hears('Hello', function($bot) {
    $bot->startConversation(new OnboardingConversation);
 });*/
+
+/*$listener = $db->Where('to_delete', '0')->where('`to`', $id)->Where('`from`', $userid)->orderBy('id', 'DESC')->get('messages', 50, array(
+    '`text`',
+    'from_delete',
+    'to_delete',
+    'seen',
+    '`from`',
+    'media',
+    'sticker',
+    'created_at'
+));*/
+
+/*$listener = $db->Where('to_delete', '0')->where('`to`', $id)->Where('`from`', $userid)->getValue('messages','text', 20);*/
+/*$listener = $db->where('`to`', $id)->getValue('messages','text', 200);
+
+print_r($listener);*/
+/*print_r (isset($listener->{'text'}));*/
+/*print_r($listener['text'] === "hello");*/
