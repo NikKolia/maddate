@@ -92,7 +92,8 @@ if ($trigger->{'src'} === "site") {
         if ($config->message_request_system == 'on') {
             $dat['status'] = 1;
         } else {
-            $dat['status'] = 0;
+//          $dat['status'] = 0;
+            $dat['status'] = 1;
         }
         $db->insert('conversations', $dat);
         $isnew = true;
@@ -129,6 +130,9 @@ if ($isnew === true) {
         }
     }
 }
+
+
+
 
 
 $config = [
