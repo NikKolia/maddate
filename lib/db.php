@@ -1251,7 +1251,9 @@ class MysqliDb {
 	}
 }
 
-$conn = mysqli_connect('localhost', 'root', '1111', 'romanm12_dating');
+   $conn = mysqli_connect('maddate.loc', 'root', '1111', 'romanm12_dating');
+// $conn = mysqli_connect($servername, $dbusername, $dbpassword, $dbname);
+// $conn = mysqli_connect('1658640.lo375374.web.hosting-test.net', 'lo375374_db', 'Pkl9P4)2t^', 'lo375374_db');
 if (mysqli_connect_errno()) {
     printf("Connect failed: %s\n", mysqli_connect_error());
     exit();

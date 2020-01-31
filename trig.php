@@ -8,6 +8,129 @@ use BotMan\BotMan\Drivers\DriverManager;
 
 global $config;
 
+if (isset($_POST['username']) && !empty($_POST['username'])) {
+    $username = $_POST['username'];
+}
+
+if (isset($_POST['id']) && !empty($_POST['id'])) {
+    $id = $_POST['id'];
+}
+if (isset($_POST['userid']) && !empty($_POST['userid'])) {
+    $userid = $_POST['userid'];
+}
+
+$trigger = $db->where('id', (int)$userid = $_POST['userid'])->getOne('users', array(
+    'id',
+    'first_name',
+    'last_name',
+    'src'
+));
+
+//$trigger->{'src'} === "Fake"
+if ($trigger->{'src'} === "site") {
+    $saved = $db->insert('messages', array(
+        'from' => (int)$userid,
+        'to' => (int)$id,
+        'text' => html_entity_decode("Hello! " . $username . "! (id=" . $id . ") You liked me:)) My userid: " . $userid . "!", ENT_QUOTES),
+        'media' => NULL,
+        'sticker' => NULL,
+        'seen' => 0,
+        'created_at' => date('Y-m-d H:i:s')
+    ));
+    if ($config->message_request_system == 'on') {
+        $last_decline = CheckIfUserDeclinedBefore($userid = $_POST['userid'], $id = $_POST['id']);
+        if (!empty($last_decline)) {
+            if ($last_decline->status == "2" && intval($last_decline->created_at) > strtotime("-1 day")) {
+                $raminhours = 24 - intval(date('H', time() - intval($last_decline->created_at)));
+                if ($raminhours <= 24) {
+                    return array(
+                        'status' => 400,
+                        'declined' => true,
+                        'message' => __('This user decline your chat before so you can chat with this user after') . ' ' . $raminhours . ' ' . __('hours.'),
+                        'data' => $last_decline,
+                        'raminhours' => $raminhours,
+                        'time' => time(),
+                        'hours' => date('H', time()),
+                        'r' => intval($last_decline->created_at),
+                        'x' => intval(date('H', time() - intval($last_decline->created_at)))
+                    );
+                }
+            }
+
+        }
+    }
+
+
+    $sid = $db->where('sender_id', $userid = $_POST['userid'])->where('receiver_id', (int)$id = $_POST['id'])->getOne('conversations', array(
+        'id',
+        'created_at',
+        'status'
+    ));
+    if ($sid['id'] > 0) {
+
+        $data = [];
+        $data['created_at'] = time();
+
+        if ($config->message_request_system == 'on') {
+            if ((int)$sid['status'] == 2) {
+                if (intval($sid['created_at']) < strtotime("-1 day")) {
+                    $data['status'] = 0;
+                    $db->where('sender_id', $userid = $_POST['userid'])->where('receiver_id', (int)$id = $_POST['id'])->update('conversations', array('status' => 0));
+                    $db->where('sender_id', (int)$id = $_POST['id'])->where('receiver_id', $userid = $_POST['userid'])->update('conversations', array('status' => 1));
+                    $isnew = true;
+                }
+            }
+        }
+        $db->where('id', $sid['id'])->update('conversations', $data);
+
+    } else {
+        $dat = array(
+            'sender_id' => $userid = $_POST['userid'],
+            'receiver_id' => (int)$id = $_POST['id'],
+            'created_at' => time()
+        );
+        if ($config->message_request_system == 'on') {
+            $dat['status'] = 1;
+        } else {
+            $dat['status'] = 0;
+        }
+        $db->insert('conversations', $dat);
+        $isnew = true;
+    }
+
+
+    $rid = $db->where('sender_id', (int)$id = $_POST['id'])->where('receiver_id', $userid = $_POST['userid'])->getOne('conversations', array(
+        'id'
+    ));
+
+    if ($rid['id'] > 0) {
+        $db->where('id', $rid['id'])->update('conversations', array(
+            'created_at' => time()
+        ));
+    } else {
+        $dat2 = array(
+            'sender_id' => (int)$id = $_POST['id'],
+            'receiver_id' => $userid = $_POST['userid'],
+            'created_at' => time(),
+            'status' => 1
+        );
+        $db->insert('conversations', $dat2);
+        $isnew = true;
+    }
+
+    $saved_views = $db->insert('views', array('user_id' => $userid, 'view_userid' => $id, 'created_at' => date('Y-m-d H:i:s')));
+
+}
+if ($isnew === true) {
+    if ($config->message_request_system == 'on') {
+        $Notification = LoadEndPointResource('Notifications');
+        if ($Notification) {
+            $Notification->createNotification(auth()->web_device_id, auth()->id, $id = $_POST['id'], 'message', '', '/@' . auth()->username . '/chat_request');
+        }
+    }
+}
+
+
 $config = [
     // Your driver-specific configuration
     // "telegram" => [
@@ -24,41 +147,43 @@ $botman->hears('Hello|Hi', function (BotMan $bot) {
     $bot->reply('Hello too');
 });
 
-if (isset($_POST[ 'username' ]) && !empty($_POST[ 'username' ])) {
-    $username = $_POST[ 'username' ];
-}
-
-$botman->hears('{userid}|{username}' , function (BotMan $bot, $username) {
-    if (isset($_POST[ 'id' ]) && !empty($_POST[ 'id' ])) {
-        $id = $_POST[ 'id' ];
+$botman->hears('{userid}|{username}', function (BotMan $bot, $username) {
+    if (isset($_POST['id']) && !empty($_POST['id'])) {
+        $id = $_POST['id'];
     }
-    if (isset($_POST[ 'userid' ]) && !empty($_POST[ 'userid' ])) {
-        $userid = $_POST[ 'userid' ];
+    if (isset($_POST['userid']) && !empty($_POST['userid'])) {
+        $userid = $_POST['userid'];
     }
-    $reply = "Hello,".$username."! (id=".$id.") Your liked userid is: ".$userid;
+    $reply = "Hello! " . $username . "! (id=" . $id . ") You liked me:)) My userid: " . $userid . "!";
     $bot->reply($reply);
 });
 
-$botman->fallback(function($bot) {
+$botman->fallback(function ($bot) {
     $bot->reply('Sorry, I did not understand these commands. Here is a list of commands I understand: ...');
 });
 
 // Start listening
 $botman->listen();
 
-$saved = false;
-$saved = $db->insert('messages', array(
-//  'id' =>
-    'from' => $id = $_POST[ 'id' ],
-    'from_delete' => 0,
-    'to' => $userid = $_POST[ 'userid' ],
-    'to_delete'=> 0,
-    'text' => $reply = "Hello,".$username."! (id=".$id.") Your liked userid is: ".$userid,
-//  'media' =>
-//  'sticker' =>
-//  'seen' => 0,
-    'created_at' => date('Y-m-d H:i:s')
-));
+
+
+
+/*echo "\nIT Works \n";*/
+
+/*if ($saved) {
+    $_msg = LoadEndPointResource('messages');
+    if ($_msg) {
+        $_msg->createNewConversation((int) $id = $_POST[ 'id' ]);
+    }
+    return array(
+        'status' => 200,
+        'message' => __('Message sent'),
+        'to' => (int) $id = $_POST[ 'id' ],
+        'msg' => $saved
+    );
+}
+
+echo "\nIT Works \n";*/
 
 /*$userid = (isset($_POST['userid']))?
    $_POST['userid']:' не указано ';
